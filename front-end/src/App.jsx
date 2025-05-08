@@ -1,9 +1,10 @@
 import { createBrowserRouter, RouterProvider, } from 'react-router-dom';
+import axios from 'axios';
 import './App.css';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ItemsListPage from './pages/ItemsListPage';
-import ItemPage from './pages/ItemPage';
+import ItemPage, { loader as itemloader } from './pages/ItemPage';
 import Layout from './Layout';
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -22,7 +23,8 @@ const routes = [{
     element: <ItemsListPage />
   }, {
     path: '/items/:name', // -> /item/old-tv
-    element: <ItemPage />
+    element: <ItemPage />,
+    loader: itemloader,
   }]
 }]
 

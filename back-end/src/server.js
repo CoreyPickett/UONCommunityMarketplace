@@ -1,12 +1,6 @@
 import express from 'express';
 import { MongoClient, ServerApiVersion } from 'mongodb';
 
-const articleInfo = [
-  { name: 'old-tv', upvotes: 0, comments: [] },
-  { name: 'barely-used-clothes', upvotes: 0, comments: [] },
-  { name: 'chem-textbooks', upvotes: 0, comments: [] },
-]
-
 const app = express();
 
 app.use(express.json());
@@ -47,20 +41,21 @@ app.post('/api/items/:name/upvote', async (req, res) => {
   res.json(updatedItem);
 });
 
-app.post('/api/items/:name/comments', (req, res) => {
-  const { name } = req.params;
-  const { postedBy, text } = req.body;
-
-  const item = itemInfo.find(a => a.name === name);
-
-  item.comments.push({
-    postedBy,
-    text,
+app.post('/api/articles/:name/comments', async (req, res) => {
+    const { name } = req.params;
+    const { postedBy, text } = req.body;
+    const newComment = { postedBy, text };
+  
+    const updatedArticle = await db.collection('articles').findOneAndUpdate({ name }, {
+      $push: { comments: newComment }
+    }, {
+      returnDocument: 'after',
+    });
+  
+    res.json(updatedArticle);
   });
 
-  res.json(item);
-});
-
+  
 async function start() {
   await connectToDB();
   app.listen(8000, function() {
