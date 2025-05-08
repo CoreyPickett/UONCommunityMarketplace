@@ -1,3 +1,4 @@
+//Used to add comments on individual item pages
 import { useState } from 'react';
 
 export default function AddCommentForm({ onAddComment }) {

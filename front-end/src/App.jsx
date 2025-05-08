@@ -1,3 +1,4 @@
+//Main app function with paths to other pages using react router
 import { createBrowserRouter, RouterProvider, } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';

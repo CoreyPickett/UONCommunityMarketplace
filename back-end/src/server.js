@@ -1,3 +1,4 @@
+//Server file for backend, currently connects to mongodb locally
 import express from 'express';
 import { MongoClient, ServerApiVersion } from 'mongodb';
 

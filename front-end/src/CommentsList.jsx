@@ -1,3 +1,4 @@
+//Used to list comments on individual items
 export default function CommentsList({ comments }) {
     return (
       <>

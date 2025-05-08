@@ -1,3 +1,4 @@
+//Placeholder content for individual items, provifing name, title, and content
 const items = [
     {
         name: 'old-tv',

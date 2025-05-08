@@ -1,3 +1,4 @@
+//Used for lisitng items on ItemListPage
 import { Link } from "react-router-dom"
 
 export default function ItemsList({ items }) {
