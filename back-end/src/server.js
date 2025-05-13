@@ -8,8 +8,11 @@ app.use(express.json());
 
 let db;
 
+// change here is to access the online version of mongodb with a defult of a local hst
 async function connectToDB() {
-  const uri = 'mongodb://127.0.0.1:27017';
+  const uri = process.env.MONGODB_USERNAME 
+    ? 'mongodb://127.0.0.1:27017'
+    : `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.gc0c2sd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
   const client = new MongoClient(uri, {
     serverApi: {
@@ -56,11 +59,14 @@ app.post('/api/articles/:name/comments', async (req, res) => {
     res.json(updatedArticle);
   });
 
+
+// changed so that the pc it runs on can select a port with 8000 as defult
+const PORT = process.env.PORT || 8000;
   
 async function start() {
   await connectToDB();
-  app.listen(8000, function() {
-    console.log('Server is listening on port 8000');
+  app.listen(PORT, function() {
+    console.log('Server is listening on port ' + PORT);
   });
 }
 
