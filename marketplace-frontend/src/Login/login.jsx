@@ -1,33 +1,57 @@
-import React from "react";
-import './login.css'
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import "./login.css"; // Importing the stylesheet
 
+// Login component
 const Login = () => {
-  return(
-  <div className="wrapper">
-    <form action="">
-      <h1>Login</h1>
-      <div className="inputbox">
-        <input type="text" placeholder="Username" required/>
-      </div>
-      <div className="inputbox">
-        <input type="password" placeholder="Password" required/>
-      </div>
-      <div className="remember-forgot">
-        <label><input type="checkbox"/>Remember Me</label>
-        <a href="#">Forgot Password?</a>
-      </div>
+  // useState hooks to manage username, password, and show/hide state
+  const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-      <button type="submit">Login</button>
+  // Handles form submission
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevents default page reload
+    if (!username || !password) {
+      alert("Please fill in all fields.");
+      return;
+    }
+    alert(`Logging in as ${username}`);
+  };
 
-      <div className="registration link">
-        <p>No Account? <Link to="/registration">Register Here!</Link></p>
-      </div>
+  return (
+    <div className="login-container">
+      <form onSubmit={handleSubmit}>
+        <h2>Login</h2>
 
-    </form>
+        {/* Username input field */}
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
+        {/* Password input with show/hide toggle */}
+        <div className="password-group">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? "Hide" : "Show"}
+          </button>
+        </div>
+
+        {/* Submit button */}
+        <button type="submit">Login</button>
+      </form>
     </div>
-);
-
+  );
 };
 
-export default Login
+export default Login;
