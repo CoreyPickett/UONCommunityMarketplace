@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import "./login.css"; // Importing the stylesheet
+import { Link } from "react-router-dom";
+import "./login.css";
 
-// Login component
 const Login = () => {
-  // useState hooks to manage username, password, and show/hide state
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  // Handles form submission
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevents default page reload
+    e.preventDefault();
     if (!username || !password) {
       alert("Please fill in all fields.");
       return;
@@ -22,16 +20,12 @@ const Login = () => {
     <div className="login-container">
       <form onSubmit={handleSubmit}>
         <h2>Login</h2>
-
-        {/* Username input field */}
         <input
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-
-        {/* Password input with show/hide toggle */}
         <div className="password-group">
           <input
             type={showPassword ? "text" : "password"}
@@ -46,9 +40,12 @@ const Login = () => {
             {showPassword ? "Hide" : "Show"}
           </button>
         </div>
-
-        {/* Submit button */}
         <button type="submit">Login</button>
+
+        {/* 👇 New user registration link */}
+        <div className="register-link">
+          <p>Don't have an account? <Link to="/registration">Create one</Link></p>
+        </div>
       </form>
     </div>
   );
