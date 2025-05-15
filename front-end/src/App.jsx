@@ -1,5 +1,6 @@
 //Main app function with paths to other pages using react router
 import { createBrowserRouter, RouterProvider, } from 'react-router-dom';
+import axios from 'axios';
 import './App.css';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -7,8 +8,6 @@ import ItemsListPage from './pages/ItemsListPage';
 import ItemPage, { loader as itemloader } from './pages/ItemPage';
 import Layout from './Layout';
 import NotFoundPage from './pages/NotFoundPage';
-import LoginPage from './pages/LoginPage';
-import RegistrationPage from './pages/RegistrationPage';
 
 const routes = [{
   path: '/',
@@ -27,12 +26,6 @@ const routes = [{
     path: '/items/:name', // -> /item/old-tv
     element: <ItemPage />,
     loader: itemloader,
-  }, {
-    path: '/login',
-    element: <LoginPage />,
-  }, {
-    path: '/registration',
-    element: <RegistrationPage />
   }]
 }]
 

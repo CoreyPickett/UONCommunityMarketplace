@@ -8,7 +8,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_FIREBASE,
+  apiKey: "AIzaSyAP3fJDGdNR_d5WeFGZ7MpQVShzF5I1mvk",
   authDomain: "uon-community-marketplac-8327c.firebaseapp.com",
   projectId: "uon-community-marketplac-8327c",
   storageBucket: "uon-community-marketplac-8327c.firebasestorage.app",
